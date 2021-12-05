@@ -17,7 +17,7 @@ namespace ProjetoCalculadora
             txtDisplay.MaxLength = 10;
         }
 
-
+        #region------------------------------FUNCOES---------------------------
 
         private void LimparCampos()
         {
@@ -80,6 +80,11 @@ namespace ProjetoCalculadora
                     
             }
         }
+        #endregion
+
+
+
+        #region ----------- Botoes Numericos --------
 
         private void btn0_Click(object sender, EventArgs e)
         {
@@ -133,7 +138,14 @@ namespace ProjetoCalculadora
         {
             AdicaoCaracterNumerico("9");
         }
+        #endregion
 
+
+        #region --------- Botoes Operacoes --------
+        private void btnDivisao_Click(object sender, EventArgs e)
+        {
+            AdiconarCaracterOperacao("/");
+        }
         private void btnMultiplicacao_Click(object sender, EventArgs e)
         {
             AdiconarCaracterOperacao("*");
@@ -148,7 +160,7 @@ namespace ProjetoCalculadora
         {
             AdiconarCaracterOperacao("+");
         }
-
+        #endregion
         private void btnPonto_Click(object sender, EventArgs e)
         {
 
@@ -160,14 +172,11 @@ namespace ProjetoCalculadora
             {
                 
                 numero2 = Convert.ToDouble(txtDisplay.Text.Trim());
-                Calcular();
-
+                
+                
             }
         }
 
-        private void btnDivisao_Click(object sender, EventArgs e)
-        {
-            AdiconarCaracterOperacao("/");
-        }
+       
     }
 }
