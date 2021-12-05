@@ -48,7 +48,7 @@ namespace ProjetoCalculadora
                 operacao = caracter;
                 txtDisplay.Clear();
             }
-        }
+        } 
 
 
         private void Calcular()
@@ -172,7 +172,7 @@ namespace ProjetoCalculadora
             {
                 
                 numero2 = Convert.ToDouble(txtDisplay.Text.Trim());
-                
+                Calcular();
                 
             }
         }
