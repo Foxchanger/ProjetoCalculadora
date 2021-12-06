@@ -2,19 +2,27 @@ namespace ProjetoCalculadora
 {
     public partial class Form1 : Form
     {
-        
+
         public Form1()
         {
             InitializeComponent();
         }
 
+
+        #region ------------- Variaveis -----------------
         private double numero1, numero2;
         private String operacao;
 
+        private Boolean PressionouIgual;
+
+        #endregion
+
         private void Form1_Load(object sender, EventArgs e)
         {
+
             LimparCampos();
             txtDisplay.MaxLength = 10;
+
         }
 
         #region------------------------------FUNCOES---------------------------
@@ -23,13 +31,20 @@ namespace ProjetoCalculadora
         {
             txtDisplay.Clear();
             numero1 = 0;
-            numero2 = 0;   
+            numero2 = 0;
             operacao = String.Empty;
+            PressionouIgual = false;
 
         }
 
         private void AdicaoCaracterNumerico(String caracter)
         {
+
+            if (PressionouIgual == true)
+            {
+                txtDisplay.Clear();
+                PressionouIgual = false;
+            }
             if (txtDisplay.Text.Trim().Equals("0"))
             {
                 txtDisplay.Text = caracter;
@@ -44,16 +59,25 @@ namespace ProjetoCalculadora
         {
             if (!txtDisplay.Text.Trim().Equals(String.Empty))
             {
-                numero1 = Convert.ToDouble(txtDisplay.Text.Trim());
+                if (txtDisplay.Text.Trim().Contains("."))
+                {
+                    numero1 = Convert.ToDouble(txtDisplay.Text.Trim().Replace(".",","));
+                }
+                else
+                {
+                    numero1 = Convert.ToDouble(txtDisplay.Text.Trim());
+                }
+                
                 operacao = caracter;
                 txtDisplay.Clear();
+
             }
-        } 
+        }
 
 
         private void Calcular()
         {
-            switch(operacao)
+            switch (operacao)
             {
                 case "/":
                     if (numero2 == 0)
@@ -61,10 +85,10 @@ namespace ProjetoCalculadora
                         MessageBox.Show("Divisao por zero!");
                         break;
                     }
-                    
+
                     txtDisplay.Text = (numero1 / numero2).ToString();
                     break;
-                
+
                 case "*":
                     txtDisplay.Text = (numero1 * numero2).ToString();
                     break;
@@ -77,7 +101,7 @@ namespace ProjetoCalculadora
                     txtDisplay.Text = (numero1 + numero2).ToString();
                     break;
 
-                    
+
             }
         }
         #endregion
@@ -163,20 +187,36 @@ namespace ProjetoCalculadora
         #endregion
         private void btnPonto_Click(object sender, EventArgs e)
         {
-
+            
+            if (txtDisplay.Text.Trim().Equals(String.Empty)) txtDisplay.Text = "0.";
+            if (txtDisplay.Text.Trim().Contains(".")) return;
+            txtDisplay.Text += ".";
+            
         }
 
         private void btnIgual_Click(object sender, EventArgs e)
         {
             if (!txtDisplay.Text.Trim().Equals(String.Empty))
             {
-                
-                numero2 = Convert.ToDouble(txtDisplay.Text.Trim());
-                Calcular();
-                
+                if (txtDisplay.Text.Trim().Contains("."))
+                {
+                    numero2 = Convert.ToDouble(txtDisplay.Text.Trim().Replace(".", ","));
+                }
+                else
+                {
+                    numero2 = Convert.ToDouble(txtDisplay.Text.Trim());
+                }
+                if (!txtDisplay.Text.Trim().Equals(String.Empty))
+                {
+
+
+                    Calcular();
+                    PressionouIgual = true;
+
+                }
             }
         }
 
-       
+
     }
 }

@@ -289,6 +289,7 @@
             // 
             // txtDisplay
             // 
+            this.txtDisplay.Enabled = false;
             this.txtDisplay.Font = new System.Drawing.Font("Calibri", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtDisplay.Location = new System.Drawing.Point(28, 41);
             this.txtDisplay.MaxLength = 10;
