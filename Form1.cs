@@ -15,6 +15,8 @@ namespace ProjetoCalculadora
 
         private Boolean PressionouIgual;
 
+        private double resultado;
+
         #endregion
 
         private void Form1_Load(object sender, EventArgs e)
@@ -34,6 +36,7 @@ namespace ProjetoCalculadora
             numero2 = 0;
             operacao = String.Empty;
             PressionouIgual = false;
+            resultado = 0;
 
         }
 
@@ -86,23 +89,24 @@ namespace ProjetoCalculadora
                         break;
                     }
 
-                    txtDisplay.Text = (numero1 / numero2).ToString();
+                    resultado = numero1 / numero2;
                     break;
 
                 case "*":
-                    txtDisplay.Text = (numero1 * numero2).ToString();
+                    resultado = numero1 * numero2;
                     break;
 
                 case "-":
-                    txtDisplay.Text = (numero1 - numero2).ToString();
+                    resultado = numero1 - numero2;
                     break;
 
                 case "+":
-                    txtDisplay.Text = (numero1 + numero2).ToString();
+                    resultado = numero1 + numero2;
                     break;
 
 
             }
+            txtDisplay.Text = resultado.ToString().Replace(",",".");
         }
         #endregion
 
@@ -187,15 +191,44 @@ namespace ProjetoCalculadora
         #endregion
         private void btnPonto_Click(object sender, EventArgs e)
         {
-            
+            if (PressionouIgual)
+            {
+                txtDisplay.Text = "0.";
+                PressionouIgual = false;
+                return;
+
+            }
             if (txtDisplay.Text.Trim().Equals(String.Empty)) txtDisplay.Text = "0.";
             if (txtDisplay.Text.Trim().Contains(".")) return;
             txtDisplay.Text += ".";
+            PressionouIgual = false;
             
+        }
+
+        private void btnC_Click(object sender, EventArgs e)
+        {
+            LimparCampos();
+        }
+
+        private void btnCE_Click(object sender, EventArgs e)
+        {
+            if (operacao.Equals(String.Empty)|| PressionouIgual)
+            {
+                LimparCampos();
+            }
+            else
+            {
+                txtDisplay.Clear();
+            }
         }
 
         private void btnIgual_Click(object sender, EventArgs e)
         {
+            if (PressionouIgual)
+            {
+                txtDisplay.Clear();
+                PressionouIgual = false;
+            }
             if (!txtDisplay.Text.Trim().Equals(String.Empty))
             {
                 if (txtDisplay.Text.Trim().Contains("."))
