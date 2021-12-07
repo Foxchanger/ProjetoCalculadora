@@ -223,6 +223,7 @@
             this.btn1x.TabIndex = 17;
             this.btn1x.Text = "1/x";
             this.btn1x.UseVisualStyleBackColor = true;
+            this.btn1x.Click += new System.EventHandler(this.btn1x_Click);
             // 
             // btnRaizQuadrada
             // 
@@ -232,6 +233,7 @@
             this.btnRaizQuadrada.TabIndex = 16;
             this.btnRaizQuadrada.Text = "SQRT";
             this.btnRaizQuadrada.UseVisualStyleBackColor = true;
+            this.btnRaizQuadrada.Click += new System.EventHandler(this.btnRaizQuadrada_Click);
             // 
             // btnPotencial
             // 
@@ -241,6 +243,7 @@
             this.btnPotencial.TabIndex = 15;
             this.btnPotencial.Text = "^";
             this.btnPotencial.UseVisualStyleBackColor = true;
+            this.btnPotencial.Click += new System.EventHandler(this.btnPotencial_Click);
             // 
             // btnElevaQuadrado
             // 
@@ -250,6 +253,7 @@
             this.btnElevaQuadrado.TabIndex = 23;
             this.btnElevaQuadrado.Text = "^2";
             this.btnElevaQuadrado.UseVisualStyleBackColor = true;
+            this.btnElevaQuadrado.Click += new System.EventHandler(this.btnElevaQuadrado_Click);
             // 
             // btnRemoveUltimoDigito
             // 
@@ -259,6 +263,7 @@
             this.btnRemoveUltimoDigito.TabIndex = 22;
             this.btnRemoveUltimoDigito.Text = "<--";
             this.btnRemoveUltimoDigito.UseVisualStyleBackColor = true;
+            this.btnRemoveUltimoDigito.Click += new System.EventHandler(this.btnRemoveUltimoDigito_Click);
             // 
             // btnMaisMenos
             // 
@@ -268,6 +273,7 @@
             this.btnMaisMenos.TabIndex = 21;
             this.btnMaisMenos.Text = "+-";
             this.btnMaisMenos.UseVisualStyleBackColor = true;
+            this.btnMaisMenos.Click += new System.EventHandler(this.btnMaisMenos_Click);
             // 
             // btnCE
             // 
@@ -331,7 +337,9 @@
             this.Controls.Add(this.btn3);
             this.Controls.Add(this.btn2);
             this.Controls.Add(this.btn1);
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculadora";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

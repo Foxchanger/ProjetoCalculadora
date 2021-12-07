@@ -60,6 +60,7 @@ namespace ProjetoCalculadora
 
         private void AdiconarCaracterOperacao(String caracter)
         {
+
             if (!txtDisplay.Text.Trim().Equals(String.Empty))
             {
                 if (txtDisplay.Text.Trim().Contains("."))
@@ -74,6 +75,10 @@ namespace ProjetoCalculadora
                 operacao = caracter;
                 txtDisplay.Clear();
 
+            }
+            else
+            {
+                MessageBox.Show("Insira algum valor");
             }
         }
 
@@ -103,11 +108,20 @@ namespace ProjetoCalculadora
                 case "+":
                     resultado = numero1 + numero2;
                     break;
-
+                case "^":
+                    resultado = CalcularPotencia(numero1,numero2);
+                    break;
 
             }
             txtDisplay.Text = resultado.ToString().Replace(",",".");
         }
+
+        private Double CalcularPotencia(Double valorBase, Double valorExpoente)
+        {
+            return Math.Pow(valorBase, valorExpoente);
+            
+        }
+
         #endregion
 
 
@@ -193,7 +207,7 @@ namespace ProjetoCalculadora
         {
             if (PressionouIgual)
             {
-                txtDisplay.Text = "0.";
+                txtDisplay.Clear();
                 PressionouIgual = false;
                 return;
 
@@ -219,6 +233,76 @@ namespace ProjetoCalculadora
             else
             {
                 txtDisplay.Clear();
+            }
+        }
+
+        private void btnMaisMenos_Click(object sender, EventArgs e)
+        {
+
+            if (!txtDisplay.Text.Trim().Equals(String.Empty))
+            {
+                txtDisplay.Text = (Convert.ToDouble(txtDisplay.Text.Trim().Replace(".",",")) * (-1)).ToString().Replace(",",".");
+            }
+
+        }
+
+        private void btnRemoveUltimoDigito_Click(object sender, EventArgs e)
+        {
+
+            int tam = txtDisplay.Text.Trim().Length;
+            String texto = txtDisplay.Text.Trim();
+            txtDisplay.Clear();
+            for (int i = 0; i < tam - 1; i++)
+            {
+                txtDisplay.Text = txtDisplay.Text + texto[i];
+            }
+
+        }
+
+        private void btnElevaQuadrado_Click(object sender, EventArgs e)
+        {
+            if (!txtDisplay.Text.Trim().Equals(String.Empty))
+            {
+
+                numero1 = Convert.ToDouble(txtDisplay.Text.Trim().Replace(".",","));
+                numero2 = 2;
+                var result = CalcularPotencia(numero1,numero2);
+                txtDisplay.Text = result.ToString().Replace(",", ".");
+                PressionouIgual = true;
+
+            }
+        }
+
+        private void btnPotencial_Click(object sender, EventArgs e)
+        {
+            AdiconarCaracterOperacao("^");
+        }
+
+        private void btnRaizQuadrada_Click(object sender, EventArgs e)
+        {
+            if (!txtDisplay.Text.Trim().Equals(String.Empty))
+            {
+                numero1 = Convert.ToDouble(txtDisplay.Text.Trim().Replace(",","."));
+                resultado = Math.Sqrt(numero1);
+                txtDisplay.Text = resultado.ToString().Replace(",", ".");
+                PressionouIgual=true;
+            }
+            
+        }
+
+        private void btn1x_Click(object sender, EventArgs e)
+        {
+            if (!txtDisplay.Text.Trim().Equals(String.Empty))
+            {
+                numero1 = Convert.ToDouble(txtDisplay.Text.Trim().Replace(",", "."));
+                if (numero1 == 0)
+                {
+                    MessageBox.Show("Erro divisâo por zero");
+                    return;
+                }    
+                resultado = 1 / numero1;
+                txtDisplay.Text = resultado.ToString().Replace(",", ".");
+                PressionouIgual = true;
             }
         }
 
